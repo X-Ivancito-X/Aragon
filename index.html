@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Organizador de Gastos Familiares</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Organizador de Gastos Familiares</h1>
+      <button id="toggle-theme" aria-label="Cambiar tema">Tema</button>
+    </header>
+
+    <main class="container">
+      <section id="controls" class="section">
+        <div class="card card-pad">
+          <div class="filters">
+          <label>
+            Mes
+            <select id="filter-month"></select>
+          </label>
+          <label>
+            Año
+            <select id="filter-year"></select>
+          </label>
+          <label>
+            Categoría
+            <select id="filter-category">
+              <option value="">Todas</option>
+            </select>
+          </label>
+          <label>
+            Buscar
+            <input id="filter-query" type="search" placeholder="Descripción..." />
+          </label>
+          <button id="clear-filters" class="secondary">Limpiar filtros</button>
+          </div>
+        </div>
+
+        <div class="summary">
+          <div class="card">
+            <div class="label">Total del mes</div>
+            <div class="value" id="summary-total">0</div>
+          </div>
+          <div class="card">
+            <div class="label">Presupuesto</div>
+            <div class="value" id="summary-budget">0</div>
+          </div>
+          <div class="card">
+            <div class="label">Disponible</div>
+            <div class="value" id="summary-remaining">0</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="new-expense" class="section">
+        <div class="card">
+          <div class="card-header"><h2>Agregar gasto</h2></div>
+          <form id="expense-form" autocomplete="off">
+            <div class="form-row">
+              <label>
+                Fecha
+                <input type="date" id="expense-date" required />
+              </label>
+              <label>
+                Categoría
+                <select id="expense-category" required></select>
+              </label>
+              <label>
+                Monto
+                <input type="number" id="expense-amount" step="0.01" min="0" required />
+              </label>
+            </div>
+            <label>
+              Descripción
+              <input type="text" id="expense-desc" maxlength="80" placeholder="Ej. supermercado" required />
+            </label>
+            <div class="form-actions">
+              <button type="submit">Guardar</button>
+              <button type="button" id="reset-form" class="secondary">Resetear</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="budget" class="section">
+        <div class="card">
+          <div class="card-header"><h2>Presupuesto mensual</h2></div>
+          <form id="budget-form">
+            <div class="form-row">
+              <label>
+                Presupuesto para <span id="budget-period"></span>
+                <input type="number" id="budget-value" step="0.01" min="0" placeholder="0.00" />
+              </label>
+              <button type="submit" class="btn-sm">Actualizar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="list" class="section">
+        <div class="card">
+          <div class="list-header">
+            <h2>Gastos</h2>
+            <div class="list-actions">
+              <button id="export-csv" class="secondary">Exportar CSV</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="expense-table">
+              <thead>
+                <tr>
+                  <th data-sort="date">Fecha</th>
+                  <th data-sort="category">Categoría</th>
+                  <th data-sort="desc">Descripción</th>
+                  <th data-sort="amount" class="amount">Monto</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3">Total</td>
+                  <td class="amount" id="table-total">0</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="by-category" class="section">
+        <h2>Gasto por categoría</h2>
+        <div id="category-summary" class="category-grid"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>Creado por Lautaro Almeida</small>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
