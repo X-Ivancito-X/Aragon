@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login | Gastos Familiares</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">💸</span>
+        <h1>Gastos Familiares</h1>
+      </div>
+      <div class="auth-head">
+        <a href="index.html" class="secondary btn-sm">Volver a la app</a>
+        <button id="toggle-theme" aria-label="Cambiar tema">Tema</button>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <div class="auth-card card">
+        <div class="brand-hero" style="justify-content:center;">
+          <span class="logo" aria-hidden="true">💸</span>
+          <h1>Gastos Familiares</h1>
+        </div>
+        <div class="card-header" style="margin-top:.5rem;"><h2>Autenticación</h2></div>
+        <div class="auth-tabs" style="justify-content:center;">
+          <button class="tab-btn" data-tab="login" id="tab-login">Ingresar</button>
+          <button class="tab-btn secondary" data-tab="register" id="tab-register">Registrar</button>
+        </div>
+
+        <div class="tab-content" id="tab-content-login">
+          <div class="form-row">
+            <label>
+              Soy
+              <select id="login-role">
+                <option value="parent">Padre/Madre</option>
+                <option value="child">Hijo/Hija</option>
+              </select>
+            </label>
+          </div>
+          <form id="login-form-parent" autocomplete="off">
+            <label>
+              Usuario padre
+              <input type="text" id="login-parent-user" required placeholder="Ej. familia.gomez" />
+            </label>
+            <label>
+              Contraseña
+              <input type="password" id="login-parent-pass" required />
+            </label>
+            <div class="form-actions" style="justify-content:space-between;">
+              <div style="display:flex; gap:.75rem; align-items:center;">
+                <label><input type="checkbox" id="remember-parent" /> Recordarme</label>
+                <label><input type="checkbox" id="show-parent-pass" /> Mostrar contraseña</label>
+              </div>
+              <button type="submit">Ingresar como padre</button>
+            </div>
+          </form>
+
+          <form id="login-form-child" autocomplete="off" hidden>
+            <label>
+              Usuario del hijo
+              <input type="text" id="login-child-name" required placeholder="Ej. juan.perez" />
+            </label>
+            <label>
+              Contraseña del hijo
+              <input type="password" id="login-child-pass" required />
+            </label>
+            <div class="form-actions" style="justify-content:space-between;">
+              <div style="display:flex; gap:.75rem; align-items:center;">
+                <label><input type="checkbox" id="remember-child" /> Recordarme</label>
+                <label><input type="checkbox" id="show-child-pass" /> Mostrar contraseña</label>
+              </div>
+              <button type="submit">Ingresar como hijo</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-content" id="tab-content-register" hidden>
+          <form id="register-form" autocomplete="off">
+            <h3>Cuenta de padres</h3>
+            <div class="form-row">
+              <label>
+                Usuario padre
+                <input type="text" id="reg-parent-user" required placeholder="Ej. familia.gomez" />
+              </label>
+              <label>
+                Contraseña
+                <input type="password" id="reg-parent-pass" required />
+              </label>
+            </div>
+            <h3>Hijos</h3>
+            <div id="children-list" class="children-list"></div>
+            <button type="button" id="add-child" class="secondary btn-sm">Agregar hijo</button>
+            <div class="form-actions" style="margin-top:1rem;">
+              <button type="submit">Crear familia</button>
+            </div>
+          </form>
+        </div>
+        <div class="form-actions" style="justify-content:center; margin-top:1rem;">
+          <a href="index.html" class="secondary btn-sm">Volver a la app</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <small class="credit">Creado por Lautaro Almeida</small>
+        <div class="fun-note" aria-hidden="true">✨ Accedé y organizá mejor</div>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+      // extras: mostrar/ocultar contraseña
+      document.addEventListener('DOMContentLoaded', () => {
+        const sp = document.getElementById('show-parent-pass');
+        const cp = document.getElementById('show-child-pass');
+        const parentPass = document.getElementById('login-parent-pass');
+        const childPass = document.getElementById('login-child-pass');
+        if (sp) sp.addEventListener('change', () => { parentPass.type = sp.checked ? 'text' : 'password'; });
+        if (cp) cp.addEventListener('change', () => { childPass.type = cp.checked ? 'text' : 'password'; });
+      });
+    </script>
+  </body>
+  </html>
