@@ -151,7 +151,11 @@
       saveSessionTo(remember ? localStorage : sessionStorage);
       showAppForRole();
       renderAll();
-      if (location.pathname.endsWith('auth.html')) location.href = 'index.html';
+      if (location.pathname.endsWith('auth.html')) {
+        // If the auth page is in Views/Pages use a relative path back to root index
+        if (location.pathname.includes('/Views/Pages/')) location.href = '../../index.html';
+        else location.href = 'index.html';
+      }
     });
 
     if (formChild) formChild.addEventListener('submit', (ev) => {
@@ -171,7 +175,10 @@
       saveSessionTo(remember ? localStorage : sessionStorage);
       showAppForRole();
       renderAll();
-      if (location.pathname.endsWith('auth.html')) location.href = 'index.html';
+      if (location.pathname.endsWith('auth.html')) {
+        if (location.pathname.includes('/Views/Pages/')) location.href = '../../index.html';
+        else location.href = 'index.html';
+      }
     });
 
     if (logoutBtn) logoutBtn.addEventListener('click', () => {
